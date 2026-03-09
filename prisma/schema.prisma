@@ -1,12 +1,15 @@
 generator client {
   provider = "prisma-client"
-  output   = "./generated/prisma/client"
 }
+
+
 
 
 datasource db {
   provider = "postgresql"
 }
+
+
 
 
 model User {
@@ -20,10 +23,14 @@ model User {
 }
 
 
+
+
 model VideoProject {
   id        String   @id @default(cuid())
   title     String
   videoType String   // kobo | fangtan | xianchang | qingjing
+
+
 
 
   productName    String?
@@ -34,13 +41,19 @@ model VideoProject {
   customNotes    String?
 
 
+
+
   status      String   @default("draft")
   // draft → script_done → images_done → video_done → published
+
+
 
 
   scriptModel String?
   imageModel  String?
   videoModel  String?
+
+
 
 
   scenes    VideoScene[]
@@ -52,10 +65,14 @@ model VideoProject {
 }
 
 
+
+
 model VideoScene {
   id        String   @id @default(cuid())
   projectId String
   project   VideoProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+
 
 
   sceneNo     Int
@@ -67,16 +84,3 @@ model VideoScene {
   subtitle    String
   musicMood   String?
   avatarRole  String?
-
-
-  imageUrl    String?
-  imageStatus String   @default("pending")
-  imageError  String?
-
-
-  videoClipUrl String?
-  videoStatus  String  @default("pending")
-  videoError   String?
-
-
-  createdAt DateTime @default(now())
