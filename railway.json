@@ -1,5 +1,5 @@
 {
-  "build": { "builder": "NIXPACKS" },
+  "build": { "builder": "RAILPACK" },
   "deploy": {
     "startCommand": "npx prisma migrate deploy && npm start",
     "healthcheckPath": "/api/health",
