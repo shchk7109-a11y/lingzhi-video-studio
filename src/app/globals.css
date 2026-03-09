@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700&family=Noto+Sans+SC:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg:           #0E1410;
+  --bg-card:      #141C16;
+  --bg-hover:     #1A241C;
+  --border:       #2A3D2C;
+  --border-light: #3A5040;
+  --gold:         #C9A84C;
+  --gold-light:   #E8C96A;
+  --gold-dim:     rgba(201,168,76,0.15);
+  --green:        #4A7C59;
+  --green-light:  #6AAF7A;
+  --text:         #E8E4DA;
+  --text-muted:   #8A9E8C;
+  --text-dim:     #5A6E5C;
+  --red:          #C0564A;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans SC', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 { font-family: 'Noto Serif SC', serif; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border-light); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-dim); }
