@@ -5,8 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx prisma migrate deploy && next start",
     "lint": "next lint"
+  },
+  "engines": {
+    "node": ">=20.19.0"
   },
   "dependencies": {
     "@prisma/adapter-pg": "^7.4.2",
