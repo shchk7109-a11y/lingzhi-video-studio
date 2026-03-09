@@ -1,10 +1,13 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "./generated/prisma/client"
 }
+
 
 datasource db {
   provider = "postgresql"
 }
+
 
 model User {
   id        String   @id @default(cuid())
@@ -16,10 +19,12 @@ model User {
   createdAt DateTime @default(now())
 }
 
+
 model VideoProject {
   id        String   @id @default(cuid())
   title     String
   videoType String   // kobo | fangtan | xianchang | qingjing
+
 
   productName    String?
   constitutions  String[]
@@ -28,12 +33,15 @@ model VideoProject {
   purpose        String   @default("培训")
   customNotes    String?
 
+
   status      String   @default("draft")
   // draft → script_done → images_done → video_done → published
+
 
   scriptModel String?
   imageModel  String?
   videoModel  String?
+
 
   scenes    VideoScene[]
   outputs   VideoOutput[]
@@ -43,10 +51,12 @@ model VideoProject {
   updatedAt DateTime @updatedAt
 }
 
+
 model VideoScene {
   id        String   @id @default(cuid())
   projectId String
   project   VideoProject @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
 
   sceneNo     Int
   duration    Int
@@ -58,50 +68,15 @@ model VideoScene {
   musicMood   String?
   avatarRole  String?
 
+
   imageUrl    String?
   imageStatus String   @default("pending")
   imageError  String?
+
 
   videoClipUrl String?
   videoStatus  String  @default("pending")
   videoError   String?
 
+
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model VideoOutput {
-  id        String   @id @default(cuid())
-  projectId String
-  project   VideoProject @relation(fields: [projectId], references: [id])
-
-  title     String
-  fileUrl   String?
-  duration  Int?
-  status    String  @default("pending")
-  errorMsg  String?
-  createdAt DateTime @default(now())
-}
-
-model MediaAsset {
-  id           String   @id @default(cuid())
-  assetType    String   // product | avatar | expert | audio | template
-  name         String
-  description  String?
-  fileUrl      String?
-  thumbnailUrl String?
-  tags         String[]
-  metadata     Json?
-  usageScope   String   @default("all")
-  reviewStatus String   @default("approved")
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-}
-
-model ModelConfig {
-  id           String   @id @default(cuid())
-  configKey    String   @unique
-  configValue  String
-  label        String?
-  updatedAt    DateTime @updatedAt
-}
